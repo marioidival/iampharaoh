@@ -1,0 +1,13 @@
+"""
+  Views of apps
+"""
+from pyramid.views import view_config
+
+
+TEMPLATE_PATH = "{{ root_project }}:{{ package }}/templates/"
+
+
+@view_config(route_name="{{ package }}_index", renderer=TEMPLATE_PATH + "index.html")
+def index(request):
+    """Return index view of {{ package }}"""
+    return {}

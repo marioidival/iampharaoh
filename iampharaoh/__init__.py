@@ -42,6 +42,7 @@ class PharaohTemplate(Template):
             raise ValueError(msg)
 
         vars['random_string'] = native_(binascii.hexlify(os.urandom(20)))
+        vars['root_project'] = package_name
         package_logger = vars['package']
         if package_logger == 'root':
             # Rename the app logger in the rare case a project is named 'root'

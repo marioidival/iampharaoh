@@ -1,0 +1,9 @@
+"""
+Urls of {{ package }}
+"""
+
+def includeme(config):
+
+    # You can remove it.
+    config.add_route("{{ package }}_index", "/{{ package }}")
+    config.scan(".views")
