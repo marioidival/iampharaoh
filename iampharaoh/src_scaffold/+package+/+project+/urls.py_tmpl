@@ -1,0 +1,11 @@
+"""
+ urls root file
+"""
+
+def includeme(config):
+    """
+      Put your urls here
+    """
+    # To add others apps here
+    # config.include("package.to.urls", route_prefix="/url_to/")
+    pass

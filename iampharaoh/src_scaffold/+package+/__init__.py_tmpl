@@ -1,11 +1,17 @@
 from pyramid.config import Configurator
-from sqlalchemy import engine_from_config
-
 from pyramid.session import UnencryptedCookieSessionFactoryConfig
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 
-from {{project}}.base_model import DBSession
+from pyramid.response import Response
+
+from sqlalchemy import engine_from_config
+from {{ project }}.base_model import DBSession
+
+
+def home(request):
+    """Default views (simple) of project"""
+    return Response("Hello Pharaoh")
 
 
 def main(global_config, **settings):
@@ -13,26 +19,36 @@ def main(global_config, **settings):
     """
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
+
     config = Configurator(settings=settings)
 
+    # Config static path
+    config.add_static_view("static", "{{ package }}:static", cache_max_age=3600)
+    # Change renderer of Jinja2
+    config.add_renderer(".html", "pyramid_jinja2.renderer_factory")
+
+    # Create session factory
     _session_factory = UnencryptedCookieSessionFactoryConfig(
-        "{{project}}s3cr3t",
-        cookie_httponly=True,
-        cookie_max_age=864000
+        "{{ project }}s3cr3t",
     )
 
-    _authn_policy = AuthTktAuthenticationPolicy(
-        "{{project}}s3cr3t",
-        max_age=864000,
-        http_only=True,
-        hashalg='sha512',
-    )
-
+    # Create Authorization and Authotication policy
     _authz_policy = ACLAuthorizationPolicy()
+    _authn_policy = AuthTktAuthenticationPolicy(
+        "{{ project }}s3cr3t",
+        http_only=True,
+        hashalg='sha512'
+    )
 
+    # You can remove it.
+    config.add_route("hello_pharaoh", "/")
+    config.add_view(home, route_name="hello_pharaoh")
 
     config.set_session_factory(_session_factory)
     config.set_authentication_policy(_authn_policy)
     config.set_authorization_policy(_authz_policy)
+
+    # Url root of project
+    config.include("{{ package }}.{{ package }}.urls")
 
     return config.make_wsgi_app()
