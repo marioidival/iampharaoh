@@ -31,7 +31,7 @@ setup(name='iampharaoh',
       install_requires=requires,
       entry_points="""\
       [pyramid.scaffold]
-      pharaohproject = iampharaoh:PharaohProjectTemplate
-      pharaohapps = iampharaoh:PharaohAppsTemplate
+      pharaohproject = iampharaoh:ProjectTemplate
+      pharaohapps = iampharaoh:AppsTemplate
       """,
       )

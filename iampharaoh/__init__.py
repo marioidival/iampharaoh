@@ -21,56 +21,24 @@ import os
 import binascii
 from textwrap import dedent
 
-from pyramid.scaffolds import PyramidTemplate
-from pyramid.scaffolds.template import Template
 from pyramid.compat import native_
+from pyramid.scaffolds.template import Template
 
 
-class PharaohProjectTemplate(PyramidTemplate):
-    _template_dir = 'src_scaffold'
-    summary = "Scaffold created for Django users initiate with Pyramid more\
-        comfortably"
-
-    def post(self, command, output_dir, vars): # pragma: no cover
-        """ Overrides :meth:`pyramid.scaffolds.template.Template.post`, to
-        print "Welcome to Pyramid.  Sorry for the convenience." after a
-        successful scaffolding rendering."""
-
-        separator = "X" * 79
-        msg = dedent("""
-        %(separator)s
-        Tutorials: http://docs.pylonsproject.org/projects/pyramid_tutorials
-        Documentation: http://docs.pylonsproject.org/projects/pyramid
-        Twitter (tips & updates): http://twitter.com/pylons
-        Mailing List: http://groups.google.com/group/pylons-discuss
-
-        Creator of this scaffold: Mario Idival
-        Twitter/Github: @marioidival
-        Welcome to Pyramid.  Sorry for the convenience.
-        %(separator)s
-        """ % {'separator': separator})
-
-        self.out(msg)
-        return Template.post(self, command, output_dir, vars)
-
-    def out(self, msg): # pragma: no cover (replaceable testing hook)
-        print(msg)
-
-class PharaohAppsTemplate(PyramidTemplate):
-    _template_dir = 'app_scaffold'
-    summary = "Create an 'app' in project. - Like startapp Django"
+class PharaohTemplate(Template):
 
     def pre(self, command, output_dir, vars):
         """ Overrides `pre` method to verify if package name is not equals of
-        project name.
+        anything package.
         """
         package_name = os.path.abspath('.').split('/')[-1]
+        blacklist_names = ('site', package_name)
 
-        if vars['package'] == package_name:
+        if vars['package'] in blacklist_names:
             msg = """
-            Sorry, you may not name your app "{0}". The project name "{0}" has been
+            Sorry, you may not name your "{0}". This name "{0}" has been
             defined. Please name it anything except "{0}".
-            """.format(package_name)
+            """.format(vars['package'])
             raise ValueError(msg)
 
         vars['random_string'] = native_(binascii.hexlify(os.urandom(20)))
@@ -96,6 +64,7 @@ class PharaohAppsTemplate(PyramidTemplate):
 
         Creator of this scaffold: Mario Idival
         Twitter/Github: @marioidival
+
         Welcome to Pyramid.  Sorry for the convenience.
         %(separator)s
         """ % {'separator': separator})
@@ -105,3 +74,13 @@ class PharaohAppsTemplate(PyramidTemplate):
 
     def out(self, msg): # pragma: no cover (replaceable testing hook)
         print(msg)
+
+
+class ProjectTemplate(PharaohTemplate):
+    _template_dir = 'src_scaffold'
+    summary = "Scaffold created for Django users initiate with Pyramid more\
+        comfortably"
+
+class AppsTemplate(PharaohTemplate):
+    _template_dir = 'app_scaffold'
+    summary = "Create an 'app' in project. - Like startapp Django"
