@@ -23,7 +23,8 @@ def main(global_config, **settings):
     config = Configurator(settings=settings)
 
     # Config static path
-    config.add_static_view("static", "{{ package }}:static", cache_max_age=3600)
+    config.add_static_view("static", "{{ project }}:static", cache_max_age=3600)
+
     # Change renderer of Jinja2
     config.add_renderer(".html", "pyramid_jinja2.renderer_factory")
 
@@ -44,6 +45,7 @@ def main(global_config, **settings):
     config.add_route("hello_pharaoh", "/")
     config.add_view(home, route_name="hello_pharaoh")
 
+    # Add session, authentication and authorization factory in config
     config.set_session_factory(_session_factory)
     config.set_authentication_policy(_authn_policy)
     config.set_authorization_policy(_authz_policy)

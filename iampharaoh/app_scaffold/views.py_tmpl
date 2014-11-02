@@ -1,7 +1,7 @@
 """
   Views of apps
 """
-from pyramid.views import view_config
+from pyramid.view import view_config
 
 
 TEMPLATE_PATH = "{{ root_project }}:{{ package }}/templates/"
