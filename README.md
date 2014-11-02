@@ -57,7 +57,44 @@ So, run in you project:
 
 This command will download some packages, but the most significant for Django users are:
 
-[SQLAlchemy](http://www.sqlalchemy.org): The Python SQL Toolkit and Object Relational Mapper.
-[Alembic](http://alembic.readthedocs.org/en/latest/): Migrations.
-[WTForms-Alchemy](https://wtforms-alchemy.readthedocs.org/en/latest/): Forms and ModelForm.
-[pyramid_jinja2](https://github.com/Pylons/pyramid_jinja2): Template Engine.
+* [SQLAlchemy](http://www.sqlalchemy.org): The Python SQL Toolkit and Object Relational Mapper.
+* [Alembic](http://alembic.readthedocs.org/en/latest/): Migrations.
+* [WTForms-Alchemy](https://wtforms-alchemy.readthedocs.org/en/latest/): Forms and ModelForm.
+* [pyramid_jinja2](https://github.com/Pylons/pyramid_jinja2): Template Engine.
+
+### Create App
+Whitin your project (Like Django):
+
+	pcreate -s pharaohapps nameOfApp
+
+The result in nameOfProeject folder now is:
+
+
+	├── LICENSE
+	├── MANIFEST.in
+	├── README
+	├── nameOfProject
+	│   ├── __init__.py
+	│   ├── nameOfProject
+	│   │   ├── __init__.py
+	│   │   ├── base_model.py
+	│   │   └── urls.py
+	│   ├── nameOfApp -> add after run last command
+	│   │   ├── __init__.py
+	│   │   ├── models.py
+	│   │   ├── templates
+	│   │   │   └── index.html
+	│   │   ├── urls.py
+	│   │   └── views.py
+	│   ├── scripts
+	│   │   ├── __init__.py
+	│   │   ├── destroydb.py
+	│   │   └── initializedb.py
+	│   └── static
+	├── development.ini
+	├── production.ini
+	├── setup.cfg
+	└── setup.py
+
+
+# TODO YET
