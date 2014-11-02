@@ -1,0 +1,3 @@
+from {{ root_project }}.{{ root_project }}.base_model import Base, DBSession
+
+# Create your models here

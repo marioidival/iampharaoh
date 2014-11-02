@@ -8,6 +8,7 @@ README = open(os.path.join(here, 'README.md')).read()
 requires = [
     'pyramid',
     'SQLAlchemy',
+    'WTForms-Alchemy',
     'alembic',
     'transaction',
     'pyramid_tm',
@@ -15,7 +16,6 @@ requires = [
     'zope.sqlalchemy',
     'waitress',
     'pyramid_jinja2',
-    'wtforms',
     ]
 
 setup(name='{{project}}',

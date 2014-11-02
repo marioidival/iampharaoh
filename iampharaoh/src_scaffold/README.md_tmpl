@@ -10,5 +10,5 @@ Getting Started
 
 - $venv/bin/initialize_{{project}}_db development.ini
 
-- $venv/bin/pserve configs/development.ini
+- $venv/bin/pserve development.ini --reload
 
