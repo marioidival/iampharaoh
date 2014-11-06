@@ -1,5 +1,5 @@
 from pyramid.config import Configurator
-from pyramid.session import UnencryptedCookieSessionFactoryConfig
+from pyramid.session import SignedCookieSessionFactory
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 
@@ -44,7 +44,7 @@ def main(global_config, **settings):
     config.add_request_method(db_session, "db", reify=True)
 
     # Create session factory
-    _session_factory = UnencryptedCookieSessionFactoryConfig(
+    _session_factory = SignedCookieSessionFactory(
         "{{ project }}s3cr3t",
     )
 
