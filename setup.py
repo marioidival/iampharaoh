@@ -4,7 +4,6 @@ from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.rst')).read()
-CHANGES = open(os.path.join(here, 'CHANGES')).read()
 
 requires = [
     'pyramid',
@@ -13,7 +12,7 @@ requires = [
 setup(name='iampharaoh',
       version='0.0.1',
       description='A Pyramid Scaffold to Pony users (django) by Mario Idival',
-      long_description=README + '\n\n' + CHANGES,
+      long_description=README,
       classifiers=[
         "Programming Language :: Python",
         "Framework :: Pyramid",
