@@ -17,7 +17,6 @@ setup(name='iampharaoh',
       classifiers=[
         "Programming Language :: Python",
         "Framework :: Pyramid",
-        "Framework :: Pyramid :: Scaffold",
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         ],
