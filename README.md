@@ -100,4 +100,4 @@ The result in nameOfProeject folder now is:
 To connect app in project:
 
   	# nameOfProject/urls.py
-  	config.include("nameOfProject.includenameOfApp.urls")
+  	config.include("nameOfProject.nameOfApp.urls")
