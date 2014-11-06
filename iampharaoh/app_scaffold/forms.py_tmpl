@@ -1,0 +1,7 @@
+""" Form file to app """
+from wtforms import Form
+
+# If you need of ModelForm approach
+# from wtforms_alchemy import ModelForm
+
+# Create your forms here
