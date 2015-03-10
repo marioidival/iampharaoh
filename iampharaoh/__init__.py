@@ -77,11 +77,12 @@ class PharaohTemplate(Template):
         print(msg)
 
 
+class AppsTemplate(PharaohTemplate):
+    _template_dir = 'app'
+    summary = "Create an 'app' in project. - Like startapp Django"
+
+
 class ProjectTemplate(PharaohTemplate):
-    _template_dir = 'src_scaffold'
+    _template_dir = 'project'
     summary = "Scaffold created for Django users initiate with Pyramid more\
         comfortably"
-
-class AppsTemplate(PharaohTemplate):
-    _template_dir = 'app_scaffold'
-    summary = "Create an 'app' in project. - Like startapp Django"

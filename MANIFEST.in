@@ -1,0 +1,3 @@
+recursive-include iampharaoh *
+include *.rst
+global-exclude *.pyc
